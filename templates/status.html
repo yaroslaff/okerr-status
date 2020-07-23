@@ -42,6 +42,8 @@
 
         {% endfor %} {# chapters #}
 
+        {% if blog %}
+        <h2>Блог статуса</h2>
             {% for blog_record in blog %}
                 <div class="sp_blog">
                     <div class="dulldate">Запись от {{blog_record.created}}</div>
@@ -49,6 +51,7 @@
                 </div>
 
             {% endfor %}
+        {% endif %}
 
 
             <div class=footer>
