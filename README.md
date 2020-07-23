@@ -8,10 +8,10 @@ apt install libapache2-mod-wsgi-py3
 ~~~
 ## Apache config
 ~~~
-<VirtualHost *:80>
+<VirtualHost *:443>
     ServerName status.okerr.com
 
-    WSGIDaemonProcess okerr-status user=xenon group=xenon threads=5
+    WSGIDaemonProcess okerr-status user=www-data group=www-data threads=5
     WSGIScriptAlias / /var/www/virtual/status.okerr.com/status.wsgi
 
     ErrorLog /var/log/apache2/status.okerr.com-err.log
@@ -23,6 +23,22 @@ apt install libapache2-mod-wsgi-py3
         Allow from all
     </Directory>
 
+    SSLEngine on
+    SSLCertificateFile /etc/letsencrypt/live/status.okerr.com/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/status.okerr.com/privkey.pem
+  
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName status.okerr.com
+    Alias /.well-known/acme-challenge/ /var/www/_certbot/.well-known/acme-challenge/
+
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{REQUEST_URI} !^/\.well\-known        
+    RewriteRule (.*) https://%{SERVER_NAME}$1 [R=301,L]
 </VirtualHost>
 ~~~
 
