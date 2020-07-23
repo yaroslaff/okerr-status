@@ -5,8 +5,7 @@ import json
 from urllib.parse import urljoin
 from flaskext.markdown import Markdown
 
-from config import textid, name, url
-
+import config
 
 app = Flask(__name__)
 Markdown(app)
@@ -14,11 +13,10 @@ Markdown(app)
 @app.route('/')
 def status():
 
+    name = config.name or ''
 
-    if url is None:
-        url = '/'.join(['https://cp.okerr.com/jstatus', textid, name])
+    url = config.url or '/'.join(['https://cp.okerr.com/jstatus', config.textid, name])
 
     r = requests.get(url)
     data = json.loads(r.text)
     return render_template('status.html', **data)
-
