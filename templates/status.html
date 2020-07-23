@@ -6,63 +6,63 @@
 <body>
 
 <div class="divcontent">
+    <div class="smalledit">
 
+        <h1>{{title}}</h1>
+            {{ desc |markdown }}
 
-<h1>{{title}}</h1>
-    {{ desc |markdown }}
+            {% for chname, indicators  in chapters.items() %}
+            <h2>{{chname}}</h2>
+            {% for i in indicators %}
 
-    {% for chname, indicators  in chapters.items() %}
-    <h2>{{chname}}</h2>
-    {% for i in indicators %}
+                <div class="sp_indicator">
 
-        <div class="sp_indicator">
-
-            <div class='dulldate' style="float: right;">
-                Updated: {{i.updated}}
-                <br>
-                Changed: {{i.changed}}
-            </div>
-
-            <div>
-                    <img src="{{ url_for('static', filename='')}}{{i.status}}.png">
-
-                <b>{{i.title}}</b>
+                    <div class='dulldate' style="float: right;">
+                        Updated: {{i.updated}}
                         <br>
-                        {% if i.details %}
-                        <span class="dull">{{i.details}}</span>
+                        Changed: {{i.changed}}
+                    </div>
+
+                    <div>
+                            <img src="{{ url_for('static', filename='')}}{{i.status}}.png">
+
+                        <b>{{i.title}}</b>
+                                <br>
+                                {% if i.details %}
+                                <span class="dull">{{i.details}}</span>
+                                {% endif %}
+                        <br>
+                        {% if i.desc %}
+                            {{i.desc}}
                         {% endif %}
+                    </div>
+                </div>
+
+            {% endfor %} {# indicator #}
+
+        {% endfor %} {# chapters #}
+
+            {% for blog_record in blog %}
+                <div class="sp_blog">
+                    <div class="dulldate">Запись от {{blog_record.created}}</div>
+                    <p>{{blog_record.text|markdown}}</p>
+                </div>
+
+            {% endfor %}
+
+
+            <div class=footer>
+                Это страница статуса, часть open-source системы мониторинга <a href="https://okerr.com/">okerr</a>.
+                Вы можете сделать себе такую же страничку мониторинга, это бесплатно!
                 <br>
-                {% if i.desc %}
-                    {{i.desc}}
-                {% endif %}
+                Использован фреймворк <a href="https://palletsprojects.com/p/flask/">Flask</a>
+
+                <br>
+                <a href="https://gitlab.com/yaroslaff/okerr-dev/">GIT репозиторий okerr-dev</a> |
+                <a href="https://gitlab.com/yaroslaff/okerr-dev/">GIT репозиторий okerr-status</a> |
+                <a href="https://gitlab.com/yaroslaff/okerr-dev/wikis/">Документация</a> |
+                <a href="https://okerr.freshdesk.com/">Поддержка</a> (<a href="mailto:support@okerr.com">support@okerr.com</a>) |
             </div>
         </div>
-
-    {% endfor %} {# indicator #}
-
-{% endfor %} {# chapters #}
-
-    {% for blog_record in blog %}
-        <div class="sp_blog">
-            <div class="dulldate">Запись от {{blog_record.created}}</div>
-            <p>{{blog_record.text|markdown}}</p>
-        </div>
-
-    {% endfor %}
-
-
-    <div class=footer>
-        Это страница статуса, часть open-source системы мониторинга <a href="https://okerr.com/">okerr</a>.
-        Вы можете сделать себе такую же страничку мониторинга, это бесплатно!
-        <br>
-        Использован фреймворк <a href="https://palletsprojects.com/p/flask/">Flask</a>
-
-        <br>
-        <a href="https://gitlab.com/yaroslaff/okerr-dev/">GIT репозиторий okerr-dev</a> |
-        <a href="https://gitlab.com/yaroslaff/okerr-dev/">GIT репозиторий okerr-status</a> |
-        <a href="https://gitlab.com/yaroslaff/okerr-dev/wikis/">Документация</a> |
-        <a href="https://okerr.freshdesk.com/">Поддержка</a> (<a href="mailto:support@okerr.com">support@okerr.com</a>) |
-    </div>
-
     </div>
 </body>
