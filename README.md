@@ -4,9 +4,26 @@ Custom status-page for project (part of [Okerr](https://okerr.com/))
 
 ## Install
 ~~~
+git clone https://gitlab.com/yaroslaff/okerr-status.git
+pip3 install Flask
+
+# to run from apache2 webserver
 apt install libapache2-mod-wsgi-py3
 ~~~
-## Apache config
+
+## Development/testing run
+
+(generic Flask commands):
+~~~
+export FLASK_APP=status.py
+export FLASK_ENV=development  # optional
+flask run
+
+# listen global IP
+flask run --host=0.0.0.0
+~~~
+
+## Apache config (production)
 ~~~
 <VirtualHost *:443>
     ServerName status.okerr.com
@@ -47,5 +64,6 @@ apt install libapache2-mod-wsgi-py3
 - [Okerr-server source code repository](gitlab.com/yaroslaff/okerr-dev/) and [okerr server wiki doc](https://gitlab.com/yaroslaff/okerr-dev/wikis/)
 - [Okerr client (okerrupdate) repositoty](https://gitlab.com/yaroslaff/okerrupdate) and [okerrupdate wiki doc](https://gitlab.com/yaroslaff/okerrupdate/wikis/)
 - [Okerrbench network server benchmark](https://gitlab.com/yaroslaff/okerrbench)
+- [Okerr JS-powered static status page](https://gitlab.com/yaroslaff/okerrstatusjs)
 - [Okerr custom status page](https://gitlab.com/yaroslaff/okerr-status)
 - [Okerr network sensor](https://gitlab.com/yaroslaff/sensor)
