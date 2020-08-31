@@ -3,7 +3,7 @@
 Custom status-page for project (part of [Okerr](https://okerr.com/))
 
 ## Install
-~~~shell script
+~~~shell
 git clone https://gitlab.com/yaroslaff/okerr-status.git
 pip3 install Flask
 
