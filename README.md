@@ -3,7 +3,7 @@
 Custom status-page for project (part of [Okerr](https://okerr.com/))
 
 ## Install
-~~~
+~~~shell script
 git clone https://gitlab.com/yaroslaff/okerr-status.git
 pip3 install Flask
 
@@ -14,7 +14,7 @@ apt install libapache2-mod-wsgi-py3
 ## Development/testing run
 
 (generic Flask commands):
-~~~
+~~~shell script
 export FLASK_APP=status.py
 export FLASK_ENV=development  # optional
 flask run
