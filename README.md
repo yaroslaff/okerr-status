@@ -14,7 +14,7 @@ apt install libapache2-mod-wsgi-py3
 ## Development/testing run
 
 (generic Flask commands):
-~~~shell script
+~~~shell
 export FLASK_APP=status.py
 export FLASK_ENV=development  # optional
 flask run
